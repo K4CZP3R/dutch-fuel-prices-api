@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  backend:
+    image: ghcr.io/k4czp3r/express-api-boilerplate:v2
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8180:1337"
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"

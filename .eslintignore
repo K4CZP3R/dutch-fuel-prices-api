@@ -1,0 +1,62 @@
+# Builds
+**/*/dist/**/*
+**/*/lib/**/*
+**/*/build/**/*
+
+# Markdown templates & documentation
+templates
+docs
+
+# Node & Yarn
+node_modules
+packages/**/package-lock.json
+packages/**/yarn.lock
+
+# Misc
+# Misc
+.npmignore
+.browserslistrc
+.editorconfig
+.eslintignore
+.eslintrc
+.gitignore
+.prettierignore
+.prettierrc
+.gitmodules
+.env.*
+*.lock
+*.log
+*.zip
+*.sh
+*.txt
+*.png
+*.json
+*.npmrc
+*.svg
+*.jpg
+*.gif
+*.xml
+*.map
+
+# OS Specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE Specific
+nbproject
+.~lock.*
+.buildpath
+.idea
+.project
+.settings
+.vscode
+composer.lock
+*.sublime-workspace
+*.swp
+*.swo
+.jest-*

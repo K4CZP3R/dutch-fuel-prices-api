@@ -1,0 +1,80 @@
+{
+    "env": {
+      "es2021": true,
+      "node": true,
+      "commonjs": true,
+          "jest": true
+    },
+      "settings": {
+          "import/resolver": {
+              "node": {
+                  "extensions": [".js", ".jsx", ".ts", ".tsx"]
+              }
+          }
+      },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended",
+          "plugin:import/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "plugins": ["@typescript-eslint", "prettier", "import"],
+    "rules": {
+      // "indent": ["error", 2],
+      "linebreak-style": ["warn", "unix"],
+      "no-console": "warn",
+      "camelcase": "warn",
+      "import/no-unresolved": ["warn", { "ignore": ["^@stofloos/"] }],
+      "import/order": [
+        "warn",
+        {
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true
+          },
+          "newlines-between": "always-and-inside-groups"
+        }
+      ],
+      "import/newline-after-import": ["warn", { "count": 1 }],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        { "argsIgnorePattern": "^__", "varsIgnorePattern": "^__" }
+      ],
+      "no-case-declarations": "warn",
+      "no-undef": "warn",
+      "no-useless-escape": "warn",
+      "no-redeclare": "warn",
+      "no-prototype-builtins": "warn",
+      "no-empty": "warn",
+      "no-constant-condition": "warn",
+      "no-func-assign": "warn",
+      "prettier/prettier": [
+        "error",
+        {
+          "arrowParens": "avoid",
+          "bracketSpacing": true,
+          "htmlWhitespaceSensitivity": "css",
+          "insertPragma": false,
+          "jsxBracketSameLine": false,
+          "jsxSingleQuote": false,
+          "printWidth": 120,
+          "proseWrap": "preserve",
+          "quoteProps": "as-needed",
+          "requirePragma": false,
+          "semi": true,
+          "singleQuote": false,
+          "tabWidth": 2,
+          "trailingComma": "es5",
+          "useTabs": true,
+          "endOfLine": "lf"
+        }
+      ]
+    }
+  }
+  
