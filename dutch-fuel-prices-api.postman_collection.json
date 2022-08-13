@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "16f93086-411d-42e2-ab17-036e650e0bf4",
+		"name": "dutch-fuel-prices-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get tankstations by city",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/tankstation/by-city/Oss",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tankstation",
+						"by-city",
+						"Oss"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get tankstation with prices by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/tankstation/by-id/6770",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"tankstation",
+						"by-id",
+						"6770"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:1337",
+			"type": "default"
+		}
+	]
+}

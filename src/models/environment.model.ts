@@ -3,7 +3,7 @@ import { IDatabaseConfig } from "./interfaces/orm-database-config.interface";
 import { read, readFileSync } from "fs";
 
 export class Environment {
-	constructor(public env: IEnvironment) {}
+	constructor(public env: IEnvironment) { }
 
 	getDatabase(): IDatabaseConfig {
 		return {
@@ -19,10 +19,7 @@ export class Environment {
 		return this.env.ENVIRONMENT === "dev";
 	}
 
-	getJwkKeyPair(): { private: any; public: any } {
-		return {
-			private: JSON.parse(readFileSync(this.env.JWT_KEY_PRIVATE).toString()),
-			public: JSON.parse(readFileSync(this.env.JWT_KEY_PUBLIC).toString()),
-		};
+	refreshPricesEveryMs(): number {
+		return parseInt(this.env.PRICES_REFRESH_EVERY_MS);
 	}
 }

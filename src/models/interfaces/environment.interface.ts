@@ -13,6 +13,8 @@ export interface IEnvironment {
 
 	JWT_KEY_PRIVATE: string;
 	JWT_KEY_PUBLIC: string;
+
+	PRICES_REFRESH_EVERY_MS: string;
 }
 
 /**
@@ -34,4 +36,6 @@ export const IEnvironmentKeys: KeysEnum<IEnvironment> = {
 
 	JWT_KEY_PRIVATE: true,
 	JWT_KEY_PUBLIC: true,
+
+	PRICES_REFRESH_EVERY_MS: true,
 };

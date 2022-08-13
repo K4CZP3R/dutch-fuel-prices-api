@@ -9,21 +9,26 @@ import { JWT_SERVICE } from "./helpers/di-names.helper";
 import { getEnvironment } from "./helpers/dotenv.helper";
 import { createMongooseConnection } from "./services/mongoose-connection.service";
 import { configToMongoUrl } from "./helpers/mongo.helper";
-import { JwtSessionService } from "./services/jwt-session.service";
 import { Environment } from "./models/environment.model";
-import { AuthController } from "./controllers/auth.controller";
+import { getDebug } from "./helpers/debug.helper";
+import { DirectLeaseService, DIRECTLEASE_SERVICE } from "./services/directlease.service";
+import { FuelType } from "./models/enums/fuel-type.enum";
+import { TankstationController } from "./controllers/tankstation.controller";
+
 
 export class App {
 	public app: express.Express;
+	debug: debug.Debugger;
 
-	private controllers: IController[] = [new AuthController()];
+	private controllers: IController[] = [new TankstationController()];
 
 	constructor() {
+		this.debug = getDebug();
 		this.app = express();
 
 		this.bootstrapApp()
 			.then(() => {
-				console.log("App bootstrapped!");
+				this.debug("App bootstrapped!");
 			})
 			.catch((e: any) => {
 				console.error("Something went wrong while bootstrapping", e);
@@ -40,20 +45,12 @@ export class App {
 	}
 
 	private setupDi(env: Environment) {
-		let keypair = env.getJwkKeyPair();
-		DependencyProviderService.setImpl<JwtSessionService>(
-			JWT_SERVICE,
-			new JwtSessionService({
-				privateJwk: keypair.private,
-				publicJwk: keypair.public,
-				// expiresIn: 60 * 60 * 24,
-				expiresIn: 60 * 15, // 15 minutes
-				refreshExpiresIn: 60 * 60 * 24 * 7, // 7 days
-				issuer: "KSP",
-			})
-		);
-
 		createMongooseConnection(configToMongoUrl(env.getDatabase()));
+
+		DependencyProviderService.setImpl<DirectLeaseService>(
+			DIRECTLEASE_SERVICE,
+			new DirectLeaseService([FuelType.Diesel, FuelType.Euro95, FuelType.Euro98], env.refreshPricesEveryMs())
+		)
 	}
 
 	private setupMiddlewares() {

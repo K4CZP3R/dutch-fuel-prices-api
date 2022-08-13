@@ -2,7 +2,7 @@ version: "3"
 
 services:
   backend:
-    image: ghcr.io/k4czp3r/express-api-boilerplate:v2
+    image: ghcr.io/k4czp3r/dutch-fuel-prices-api:latest
     build:
       context: ./
       dockerfile: Dockerfile

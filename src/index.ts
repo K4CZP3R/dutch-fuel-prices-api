@@ -1,6 +1,9 @@
 import { getEnvironmentInterface } from "./helpers/dotenv.helper";
 import http from "http";
 import { App } from "./app";
+import { getDebug } from "./helpers/debug.helper";
+
+const debug = getDebug();
 
 let env = getEnvironmentInterface();
 if (!env.SERVER_PORT) {
@@ -12,5 +15,5 @@ const app = new App();
 const server = http.createServer(app.app);
 
 server.listen(env.SERVER_PORT, "0.0.0.0", () => {
-	console.log("App listening on port", env.SERVER_PORT);
+	debug("App listening on port", env.SERVER_PORT);
 });
