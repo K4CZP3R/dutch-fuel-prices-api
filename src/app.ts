@@ -19,15 +19,20 @@ import { TankstationController } from "./controllers/tankstation.controller";
 export class App {
 	public app: express.Express;
 	debug: debug.Debugger;
-
-	private controllers: IController[] = [new TankstationController()];
+	public appIsReady: boolean;
 
 	constructor() {
+		this.appIsReady = false;
 		this.debug = getDebug();
+
+		const environemnt = getEnvironment();
+
+		this.debug("Initializing express app");
 		this.app = express();
 
-		this.bootstrapApp()
+		this.bootstrapApp(environemnt)
 			.then(() => {
+				this.appIsReady = true;
 				this.debug("App bootstrapped!");
 			})
 			.catch((e: any) => {
@@ -35,10 +40,10 @@ export class App {
 			});
 	}
 
-	private async bootstrapApp() {
-		const env = getEnvironment();
-		this.setupDi(env);
-		if (env.isDev()) await this.seedDatabaseInDev();
+	private async bootstrapApp(environment: Environment) {
+		await environment.initialize();
+		this.setupDi(environment);
+		if (environment.isDev()) await this.seedDatabaseInDev();
 		this.setupMiddlewares();
 		this.setupControllers();
 		this.setupAfterMiddlewares();

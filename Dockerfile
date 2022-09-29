@@ -1,4 +1,4 @@
-FROM node:16 
+FROM node:16-alpine
 
 WORKDIR /usr/src/app
 
@@ -11,4 +11,5 @@ COPY . .
 
 RUN npm run build
 
-CMD [ "ENVIRONMENT=production","node", "dist/index.js" ]
+ENV ENVIRONMENT=production
+CMD [ "node", "dist/index.js" ]

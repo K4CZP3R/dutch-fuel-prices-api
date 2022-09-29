@@ -1,9 +1,14 @@
 import { IEnvironment } from "./interfaces/environment.interface";
 import { IDatabaseConfig } from "./interfaces/orm-database-config.interface";
-import { read, readFileSync } from "fs";
+import { existsSync, read, readFileSync } from "fs";
+import { generateKeys } from "../scripts/generate-keys.script";
 
 export class Environment {
-	constructor(public env: IEnvironment) { }
+	constructor(public env: IEnvironment) {}
+
+	async initialize(): Promise<void> {
+		await this.generateKeyPairIfNeeded();
+	}
 
 	getDatabase(): IDatabaseConfig {
 		return {
@@ -12,6 +17,7 @@ export class Environment {
 			databaseName: this.env.DB_NAME,
 			password: this.env.DB_PASS,
 			port: this.env.DB_PORT,
+			url: this.env.DB_URL,
 		};
 	}
 

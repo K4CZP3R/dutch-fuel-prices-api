@@ -4,4 +4,5 @@ export interface IDatabaseConfig {
 	databaseName: string;
 	password: string;
 	port: number;
+	url?: string;
 }
