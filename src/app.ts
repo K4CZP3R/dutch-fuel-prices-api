@@ -15,11 +15,12 @@ import { DirectLeaseService, DIRECTLEASE_SERVICE } from "./services/directlease.
 import { FuelType } from "./models/enums/fuel-type.enum";
 import { TankstationController } from "./controllers/tankstation.controller";
 
-
 export class App {
 	public app: express.Express;
 	debug: debug.Debugger;
 	public appIsReady: boolean;
+
+	controllers: IController[] = [new TankstationController()];
 
 	constructor() {
 		this.appIsReady = false;
@@ -55,7 +56,7 @@ export class App {
 		DependencyProviderService.setImpl<DirectLeaseService>(
 			DIRECTLEASE_SERVICE,
 			new DirectLeaseService([FuelType.Diesel, FuelType.Euro95, FuelType.Euro98], env.refreshPricesEveryMs())
-		)
+		);
 	}
 
 	private setupMiddlewares() {

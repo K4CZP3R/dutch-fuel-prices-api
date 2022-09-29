@@ -1,7 +1,5 @@
 import { IDatabaseConfig } from "../models/interfaces/orm-database-config.interface";
 import { v4 as uuid } from "uuid";
-import { generateNumberBetween } from "./secure.helper";
-import { randomBytes } from "crypto";
 
 export function configToMongoUrl(databaseConfig: IDatabaseConfig) {
 	if (databaseConfig.url) {

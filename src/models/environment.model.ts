@@ -1,13 +1,11 @@
 import { IEnvironment } from "./interfaces/environment.interface";
 import { IDatabaseConfig } from "./interfaces/orm-database-config.interface";
-import { existsSync, read, readFileSync } from "fs";
-import { generateKeys } from "../scripts/generate-keys.script";
 
 export class Environment {
 	constructor(public env: IEnvironment) {}
 
 	async initialize(): Promise<void> {
-		await this.generateKeyPairIfNeeded();
+		Promise.resolve();
 	}
 
 	getDatabase(): IDatabaseConfig {
