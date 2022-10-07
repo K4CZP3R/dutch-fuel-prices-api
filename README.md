@@ -14,6 +14,10 @@ API wrapper for directlease.nl, returning all gas prices (euro95/98, diesel)
 2. Copy `.env.example` to `.env` and fill it in.
 3. `npm run dev` for development with hot reload or `npm run build` for building
 
+## Testing environment
+
+Available [here](https://dfp.k4czp3r.xyz)
+
 ## How does it work?
 
 directlease.nl has map with all gas stations, when you click on one, it fetches image with info about the selected gas station.
